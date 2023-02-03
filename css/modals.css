@@ -1,0 +1,40 @@
+body{
+    margin: 0;
+}
+.modal_message{
+    background-color: rgb(0 0 0 / 34%);
+    color: #dcd5ca;
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+.modal_message .modal{
+    padding: 20px;
+    margin: auto;
+    text-transform: uppercase;
+    position: relative;
+    top: 50%;
+    bottom: 50%;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #B75A5A;
+    width: fit-content;
+}
+.modal_message .modal p{
+    font-size: 30px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+.modal_message .modal button{
+    text-transform: uppercase;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #dcd5ca;
+    font-weight: 700;
+    color: #B75A5A;
+    transition: 1s;
+}
+.modal_message .modal button:hover{
+    background-color: white;
+    color: black;
+}

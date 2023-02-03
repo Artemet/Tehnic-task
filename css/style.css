@@ -1,0 +1,196 @@
+@import "modals.css";
+body{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+form{
+    --elements-color: #B75A5A;
+    background-color: #dcd5ca;
+    border-radius: 10px;
+    padding: 10px 100px;
+    width: fit-content;
+    margin: 40px auto;
+}
+form select{
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid black;
+    padding: 10px;
+}
+form .inputs label{
+    border-bottom: 2px solid #B75A5A;
+    padding-bottom: 20px;
+}
+form .inputs{
+    margin: auto;
+}
+form label textarea{
+    resize: vertical;
+    transition: 0.5s;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    width: 305px;
+    outline: none;
+    border: 1px solid black;
+}
+form .inputs label .input_information{
+    width: fit-content;
+    padding-bottom: 10px;
+}
+form .inputs label p.input_name{
+    margin-bottom: 3px;
+}
+form .inputs label .input_information div{
+    width: 100%;
+    height: 2px;
+    transition: 1s;
+    animation-direction: alternate-reverse;
+    animation-name: line_width;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+@keyframes line_width{
+    0%{
+        width: 0%;
+        background-color: black;
+    }
+    50%{
+        background-color: white;
+    }
+    100%{
+        width: 100%;
+        background-color: white;
+    }
+}
+form label p span{
+    color: var(--elements-color);
+}
+form label input{
+    font-size: 16px;
+    width: 305px;
+    transition: 0.5s;
+    outline: none;
+    padding: 10px;
+    border: 1px solid black;
+}
+form label .print_place:hover{
+    border: 1px solid var(--elements-color);
+}
+form .attachments{
+    padding-top: 10px;
+}
+form .attachments div{
+    text-align: center;
+    display: grid;
+    align-items: center;
+}
+form .attachments p{
+    padding-left: 13px;
+    text-decoration: underline #B75A5A;
+}
+form .attachments p.file_warning{
+    text-align: left;
+    padding-left: 0;
+    color: #B75A5A;
+    display: none;
+    font-weight: 700;
+}
+form .attachments p.block{
+    display: block;
+}
+form .attachments input{
+    width: 300px;
+    margin: auto;
+    padding: 5px;
+    background-color: var(--elements-color);
+    color: white;
+    font-size: 16px;
+    border: 2px solid white;
+    transition: 0.5s;
+}
+form .attachments input:hover{
+    opacity: 70%;
+    color: #B75A5A;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+form label .menu{
+    position: relative;
+}
+form label .menu p{
+    transition: 0.3s;
+    margin: 0;
+}
+form label .menu .arrow{
+    background-color: white;
+    padding: 10px;
+    width: 305px;
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+form label .menu span{
+    transition: 0.3s;
+}
+form label .menu span.cross{
+    color: #B75A5A;
+    transform: rotate(180deg);
+}
+form label .menu span.cross:hover{
+    color: black;
+}
+form label .menu p.choice_change{
+    color: #B75A5A;
+}
+form label .menu:hover p.choice{
+    color: #B75A5A;
+}
+form label .menu:hover span{
+    color: #B75A5A;
+    transform: rotate(180deg);
+}
+form label .sub_menu{
+    display: none;
+    padding: 15px 0;
+    width: 100%;
+    position: absolute;
+    background-color: #e0e0e0;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid #B75A5A;
+}
+form label .sub_menu_open{
+    display: block;
+}
+form label .sub_menu .menu_line{
+    width: 305px;
+    margin: auto;
+    height: 2px;
+    background-color: #B75A5A;
+}
+form label .sub_menu p{
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+form label .sub_menu p:hover{
+    text-decoration: underline #B75A5A;
+}
+form button.send_button{
+    margin-top: 15px;
+    padding: 7px 0;
+    width: 100%;
+    background-color: var(--elements-color);
+    color: white;
+    font-size: 17px;
+    transition: 0.5s;
+}
+form button.send_button:hover{
+    opacity: 70%;
+    border-radius: 20px;
+    border: 2px solid white;
+    color: black;
+}
