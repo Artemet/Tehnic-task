@@ -73,57 +73,60 @@ else{
 </body>
 </html>
 ";
-sendMailAttachment($email_host, "ayahoo976@gmail.com", "Согласование", $message, $_FILES["userfile"]);
+    sendMailAttachment($email_host, "ayahoo976@gmail.com", "Согласование", $message, $_FILES["userfile"]);
 }
-    function sendMailAttachment($mailTo, $From, $subject_text, $message, $FILES){
-            $to = $mailTo;
-    
-            $EOL = "\r\n"; // ограничитель строк, некоторые почтовые сервера требуют \n - подобрать опытным путём
-            $boundary     = "--".md5(uniqid(time()));  // любая строка, которой не будет ниже в потоке данных. 
-    
-            $subject= '=?utf-8?B?' . base64_encode($subject_text) . '?=';
-    
-            $headers    = "MIME-Version: 1.0;$EOL";   
-            $headers   .= "Content-Type: multipart/mixed; text/html; charset=iso-8859-1'; boundary=\"$boundary\"$EOL";  
-            $headers   .= "From: $From\nReply-To: $From\n";  
-    
-            $multipart  = "--$boundary$EOL";   
-            $multipart .= "Content-Type: text/html; charset=utf-8$EOL";   
-            $multipart .= "Content-Transfer-Encoding: base64$EOL";   
-            $multipart .= $EOL; // раздел между заголовками и телом html-части 
-            $multipart .= chunk_split(base64_encode($message));   
-    
-            #начало вставки файлов
-            $arr = array("userfile");
-            for($i = 0; $i < 100; $i++){
-                $arr[]="userfile" . $i;
-            }
-            foreach($arr as $key => $value){
-                $filename = $_FILES[$value]["tmp_name"];
-                $file = fopen($filename, "rb");
-                $data = fread($file,  filesize( $filename ) );
-                print_r(json_encode($file));
-                fclose($file);
-                $NameFile = $_FILES[$value]["name"]; // в этой переменной надо сформировать имя файла (без всякого пути);
-                $File = $data;
-                $multipart .=  "$EOL--$boundary$EOL";
-                $multipart .= "Content-Type: application/octet-stream; name=\"$NameFile\"$EOL";   
-                $multipart .= "Content-Transfer-Encoding: base64$EOL";
-                $multipart .= "Content-Disposition: attachment; filename=\"$NameFile\"$EOL";  
-                $multipart .= chunk_split(base64_encode($File));
-    
-            }
-    
-            #>>конец вставки файлов
-    
-            $multipart .= "$EOL--$boundary--$EOL";
-    
-            if(!mail($to, $subject, $multipart, $headers)){
-                echo 'Письмо не отправлено';
-            } //Отправляем письмо
-            else{
-                // echo 'Письмо отправлено';
-            }
-    
+function sendMailAttachment($mailTo, $From, $subject_text, $message, $FILES){
+    $to = $mailTo;
+
+    $EOL = "\r\n"; // ограничитель строк, некоторые почтовые сервера требуют \n - подобрать опытным путём
+    $boundary     = "--".md5(uniqid(time()));  // любая строка, которой не будет ниже в потоке данных.
+
+    $subject= '=?utf-8?B?' . base64_encode($subject_text) . '?=';
+
+    $headers    = "MIME-Version: 1.0;$EOL";
+    $headers   .= "Content-Type: multipart/mixed; text/html; charset=iso-8859-1'; boundary=\"$boundary\"$EOL";
+    $headers   .= "From: $From\nReply-To: $From\n";
+
+    $multipart  = "--$boundary$EOL";
+    $multipart .= "Content-Type: text/html; charset=utf-8$EOL";
+    $multipart .= "Content-Transfer-Encoding: base64$EOL";
+    $multipart .= $EOL; // раздел между заголовками и телом html-части
+    $multipart .= chunk_split(base64_encode($message));
+
+    #начало вставки файлов
+    $arr = array("userfile");
+    for($i = 0; $i < 1; $i++){
+        $arr[]="userfile" . $i;
+    }
+    foreach($arr as $value){
+        // print_r($_FILES[$value]);
+        if(isset($_FILES[$value])){
+            $filename = $_FILES[$value]["tmp_name"];
+            $file = fopen($filename, "rb");
+            $data = fread($file,  filesize( $filename ) );
+            print_r(json_encode($file));
+            fclose($file);
+            $NameFile = $_FILES[$value]["name"]; // в этой переменной надо сформировать имя файла (без всякого пути);
+            $File = $data;
+            $multipart .=  "$EOL--$boundary$EOL";
+            $multipart .= "Content-Type: application/octet-stream; name=\"$NameFile\"$EOL";
+            $multipart .= "Content-Transfer-Encoding: base64$EOL";
+            $multipart .= "Content-Disposition: attachment; filename=\"$NameFile\"$EOL";
+            $multipart .= chunk_split(base64_encode($File));
         }
+
+    }
+
+    #>>конец вставки файлов
+
+    $multipart .= "$EOL--$boundary--$EOL";
+
+    if(!mail($to, $subject, $multipart, $headers)){
+        echo 'Письмо не отправлено';
+    } //Отправляем письмо
+    else{
+        // echo 'Письмо отправлено';
+    }
+
+}
 ?>
